@@ -7,3 +7,6 @@
 # Ignore other Eclipse files
 *.classpath
 *.project
+
+# Ignore macOS files
+*.DS_Store
