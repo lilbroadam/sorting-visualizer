@@ -6,15 +6,19 @@ import java.util.Random;
 public class SortingVisualizer {
 
 	public static void main(String[] args) {
-		int numElements = 20;
-		int maxValue = 20;
+		int windowWidth = 900;
+		int windowHeight = 600;
+		int numElements = 100; // TODO bug: if numElements > 300, only first part of the array is visualized
+		int maxValue = 100;
+		Color foregroundColor = Color.WHITE;
+		Color backgroundColor = Color.BLACK;
 		
 		int[] sortMe = randomIntArray(numElements, maxValue);
-		System.out.println(Arrays.toString(sortMe));
+		System.out.println("Array to be sorted: " + Arrays.toString(sortMe));
 		
-		Visualizer.setup(900, 600);
-		Visualizer.setArray(sortMe, maxValue);
-		Visualizer.setColors(Color.BLACK, Color.WHITE);
+		Visualizer vis = new Visualizer(windowWidth, windowHeight);
+		vis.setArray(sortMe, maxValue);
+		vis.setColors(foregroundColor, backgroundColor);
 		
 	}
 	
@@ -22,9 +26,8 @@ public class SortingVisualizer {
 		int[] randomArray = new int[arraySize];
 		
 		Random random = new Random();
-		for(int i = 0; i < randomArray.length; i++){
-			randomArray[i] = random.nextInt(maxValue);
-		}
+		for(int i = 0; i < randomArray.length; i++)
+			randomArray[i] = random.nextInt(maxValue + 1);
 		
 		return randomArray;
 	}
